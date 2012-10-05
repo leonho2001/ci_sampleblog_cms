@@ -1,19 +1,21 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<title><?=$title?></title>
-	<link href="css/templatemo_style.css" rel="stylesheet" type="text/css">
+	<link href="<?php echo base_url();?>css/templatemo_style.css" rel="stylesheet" type="text/css">
+	<?=$header?>
 </head>
 <body>
 
 <div id="templatemo_top_wrapper">
 	<div id="templatemo_top">
     	<ul id="social_box">
-            <li><a href="#"><img src="images/facebook.png" alt="facebook"></a></li>
-            <li><a href="#"><img src="images/twitter.png" alt="twitter"></a></li>
-            <li><a href="#"><img src="images/linkedin.png" alt="linkin"></a></li>
-            <li><a href="#"><img src="images/technorati.png" alt="technorati"></a></li>
-            <li><a href="#"><img src="images/myspace.png" alt="myspace"></a></li>                
+            <li><a href="#"><img src="<?php echo base_url();?>images/facebook.png" alt="facebook"></a></li>
+            <li><a href="#"><img src="<?php echo base_url();?>images/twitter.png" alt="twitter"></a></li>
+            <li><a href="#"><img src="<?php echo base_url();?>images/linkedin.png" alt="linkin"></a></li>
+            <li><a href="#"><img src="<?php echo base_url();?>images/technorati.png" alt="technorati"></a></li>
+            <li><a href="#"><img src="<?php echo base_url();?>images/myspace.png" alt="myspace"></a></li>                
         </ul>
     </div>
 </div>
@@ -22,7 +24,7 @@
 	<div id="templatemo_header">
     
     	<div id="site_title">
-            <h1><a href="index.html"><img src="images/templatemo_logo.png" alt="logo"><span>YOUR TAGLINE GOES HERE</span></a></h1>
+            <h1><a href="/"><img src="<?php echo base_url();?>images/templatemo_logo.png" alt="logo"><span>YOUR TAGLINE GOES HERE</span></a></h1>
         </div> <!-- end of site_title -->
         
     </div>
@@ -31,10 +33,10 @@
 <div id="templatemo_menu_wrapper">
 	<div id="templatemo_menu">
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="aboutus.html">About</a></li>
-            <li><a href="gallery.html">Gallery</a></li>
-            <li><a href="contact.html" class="current">Contact</a></li>
+            <li><a href="/" <?php if($this->uri->segment(3) == "")echo 'class="current"'; ?>>Home</a></li>
+            <li><a href="<?=base_url().'blog/content/about'?>" <?php if($this->uri->segment(3) == 'about') echo 'class="current"'; ?>>About</a></li>
+            <li><a href="<?=base_url().'blog/content/gallery'?>" <?php if($this->uri->segment(3) == 'gallery') echo 'class="current"'; ?>>Gallery</a></li>
+            <li><a href="<?=base_url().'blog/content/contact'?>" <?php if($this->uri->segment(3) == 'contact') echo 'class="current"'; ?> >Contact</a></li>
         </ul>    	
     </div> <!-- end of templatemo_menu -->
 </div>
@@ -45,7 +47,10 @@
 	<div id="templatemo_middle">
     
     	<div id="templatemo_content">
+        	<!-- main content here -->
         	
+        	<?php
+        	 $this->load->view('content/'.$content);?>
         	<div class="cleaner"></div>	
             
         
@@ -55,10 +60,10 @@
         
         	<div class="sidebar_box">
                 <ul class="ads_125">
-                    <li><a href="http://www.templatemo.com"><img src="images/templatemo_ads.jpg" alt="CSS Templates"></a></li>
-                    <li class="odd"><a href="http://www.flashmo.com"><img src="images/templatemo_ads.jpg" alt="banner"></a></li>
-                    <li class="last_row"><a href="http://www.templatemo.com/page/1"><img src="images/templatemo_ads.jpg" alt="banner"></a></li>
-                    <li class="odd last_row"><a href="http://www.flashmo.com/page/1"><img src="images/templatemo_ads.jpg" alt="banner"></a></li>
+                    <li><a href="http://www.templatemo.com"><img src="<?php echo base_url();?>images/templatemo_ads.jpg" alt="CSS Templates"></a></li>
+                    <li class="odd"><a href="http://www.flashmo.com"><img src="<?php echo base_url();?>images/templatemo_ads.jpg" alt="banner"></a></li>
+                    <li class="last_row"><a href="http://www.templatemo.com/page/1"><img src="<?php echo base_url();?>images/templatemo_ads.jpg" alt="banner"></a></li>
+                    <li class="odd last_row"><a href="http://www.flashmo.com/page/1"><img src="<?php echo base_url();?>images/templatemo_ads.jpg" alt="banner"></a></li>
                 </ul>  
                 <div class="cleaner"></div>
             </div>              
@@ -110,8 +115,8 @@
         <div class="col_w310">
             <h4>Our Pages</h4>
             <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="">About</a></li>
                 <li><a href="gallery.html">Gallery</a></li>
                 <li><a href="contact.html" class="last">Contact</a></li>
             </ul>  
@@ -132,7 +137,7 @@
         <div class="col_w310">
             <h4>About Us</h4>
             <p>Integer consectetur enim eget diam tincidunt vehicula. Aenean scelerisque tellus vitae tortor placerat egestas. Ut volutpat erat nec mauris vestibulum sit amet pharetra urna.</p>
-            <div class="btn_more"><a href="about.html">Read more<span>...</span></a></div>
+            <div class="btn_more"><a href="<?=base_url().'blog/content/about'?>">Read more <span>&raquo;</span></a></div>
  
         </div>
         
@@ -146,11 +151,9 @@
 <div id="templatemo_copyright_wrapper">
     <div id="templatemo_copyright">
     
-        Copyright � 2048 <a href="#">Your Company Name</a> - 
+        Copyright &#169; 2048 <a href="http://www.mmsofts.com">MMSoft</a> - 
         Designed by <a href="http://www.templatemo.com" target="_parent">Free CSS Templates</a>
         
     </div>
 </div>
-    
-
-<script src="http://toolbar.avg.com/si.js?p=HxBY1LyQFFxEP0TKCw%2BOvjSFMEPY0U8uzECUS6rqf5my9rkYDXTZRFII%2B2U18SmTKpQe9yimYRT5f8PPoN%2fGKHzmhamxHY1rlDyouJmNtQ4NX6EYPTj7xZA2%2fAM8fHmjtSZyLn1ZdvhAsgohCW1w1Ngh9mg5%2BKGlEKL%2B7UmpAyYZvpAcDQumdIv9a5vBAiBrTPxlfM9kA2NLDeH5yiWMzrMje0ISOYI8N63Dij8Gmd24aB9XNsp2Kx86AA%3D%3D" type="text/javascript"></script></body></html>
+</body></html>

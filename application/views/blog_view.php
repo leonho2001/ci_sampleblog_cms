@@ -6,11 +6,11 @@
 </head>
 	
     <body>
-	    <h1><?php echo $Heading ?></h1>
-	    <?php foreach ($Query->result() as $Row): ?>
-			<h3><?=$Row->title?></h3>
-			<p><?=$Row->body?></p>
-			<p><?=anchor('/blog/comments/'.$Row->id,'Comments');?></p>
+     <h1><?php echo $heading ?></h1>
+	    <?php foreach ($query->result() as $row): ?>
+			<h3><?=$row->title?></h3>
+			<p><?=$row->body?></p>
+			<p><?=anchor('/blog/comments/'.$row->id,'Comments');?></p>
 			<hr>
 		<?php endforeach;  ?>
 
