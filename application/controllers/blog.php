@@ -16,6 +16,7 @@ class Blog extends CI_Controller{
 		$data['title']='Thuận\'s Blog';
 		$data['heading']='Welcome Buddies';
 		$data['content']='home';
+		
 		$data['header']='<link href="'.base_url().'css/svwp_style.css" rel="stylesheet" type="text/css" />
 <script src="'.base_url().'js/jquery-1.3.2.min.js" type="text/javascript"></script>
 <script src="'.base_url().'js/jquery.slideViewerPro.1.0.js" type="text/javascript"></script>
@@ -68,11 +69,24 @@ class Blog extends CI_Controller{
 				$data['title']='Thuận\' Gallery';
 				break;
 			case "blog_post":
-				
+				$data['title']='Thuận\'s Blog';
+				if($postID > 0)
+				{
+					$entry = $this->post_model->getOnePost($postID);
+					if($entry != null)
+					{
+						$data['entryHeading']= $entry['title'];
+						$data['entryBody'] = $entry['body'];
+						$data['entryDate'] = $entry['postdate'];
+						$data['author'] = $entry['author'];
+						$data['ccount'] = $entry['ccount'];
+						$data['thumbnail'] = $entry['thumbnail'];
+					}
+					else show_404('page');
+				}
+				else show_404('page');
 				break;
 			default:
-				$data['title']='404 Error';
-				$data['header']='';
 				show_404('page');
 		}
 		$this->load->view('Template/layout',$data);

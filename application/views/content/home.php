@@ -34,7 +34,7 @@
 			?>
 	            <div class="<?php if($row->id != $lastID) echo 'post_box'; else echo 'post_box post_box_last';?>">
 	        
-	                <h2><a href="blog_post.html"><?=$row->title ?></a></h2>
+	                <h2><a href="/blog/content/blog_post/<?=$row->id?>"><?=$row->title ?></a></h2>
 	
 	                <div class="post_meta">
 	                	<strong>Date:</strong>
@@ -44,16 +44,16 @@
 	                		 	echo mdate($format, $time); 
 	                		 	?>
 	                		 	 | <strong>Author:</strong> <?= $row->author?>
-	                		 	 | <a href="/blog/content/blog_post"><?=$row->ccount?> comments</a>
+	                		 	 | <a href="/blog/content/blog_post/<?=$row->id?>"><?=$row->ccount?> comments</a>
 	                </div>
-	                <a href="#"><img src="<?php echo base_url();?>images/templatemo_image_01.jpg" alt="image" /></a>
+	                <a href="/blog/content/blog_post/<?=$row->id?>"><img src="<?php echo base_url();?>images/blog_thumbnails/<?=$row->thumbnail?>" alt="image" /></a>
 	                
 	                <p>
-	                	<?php if(strlen($row->body) > 300) echo substr($row->body, 0, 300).'<a style="text-decoration:none" href="/blog/content/blog_post">...read more</a>'; else echo $row->body;?>
+	                	<?php if(strlen($row->body) > 500) echo substr($row->body, 0, 500).'<a style="text-decoration:none" href="/blog/content/blog_post/'.$row->id.'">...read more</a>'; else echo $row->body;?>
 	                </p>
 	                    
 	              <div class="cleaner_h20"></div>
-	                <div class="category"><strong>Category: </strong><a href="#">Freebies</a>, <a href="#">CSS Templates</a></div> <div class="btn_more float_r"><a href="blog_post.html">Click to comment <span>&raquo;</span></a></div>
+	                <div class="category"><strong>Category: </strong><a href="#">Freebies</a>, <a href="#">CSS Templates</a></div> <div class="btn_more float_r"><a href="/blog/content/blog_post/<?=$row->id?>">Click to comment <span>&raquo;</span></a></div>
 	                <div class="cleaner"></div>
 	    
 	            </div>
